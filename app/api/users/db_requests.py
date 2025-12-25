@@ -80,15 +80,16 @@ async def upsert_result_obj(nickname: str, mode: Modes, amount_of_points: float)
         await insert_user_obj(user)
 
     if existing_result:
-        await settings.DB_CLIENT.results.update_one(
-            {"id": existing_result["id"]},
-                {"$set":
-                    {
-                        "amountOfPoints": amount_of_points,
-                        "datetimeUpdated": datetime.now()
+        if existing_result["amountOfPoints"] < amount_of_points:
+            await settings.DB_CLIENT.results.update_one(
+                {"id": existing_result["id"]},
+                    {"$set":
+                        {
+                            "amountOfPoints": amount_of_points,
+                            "datetimeUpdated": datetime.now()
+                        }
                     }
-                }
-            )
+                )
     else:
         result = ResultsModel(
             userId=user.id,
