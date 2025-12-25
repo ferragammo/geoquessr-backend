@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List
 from fastapi import HTTPException
 
-from app.api.users.dto import Modes
+from app.api.dto import Modes
 from app.api.users.model import UserModel, ResultsModel
 from app.core.config import settings
 
@@ -19,8 +19,6 @@ async def get_top_10_users_obj(mode: Modes) -> List[UserModel] | List:
     users_data = await settings.DB_CLIENT.users.find(
         {"id": {"$in": user_ids}}
     ).to_list(length=None)
-
-    print(users_data)
 
     results_models = [ResultsModel.from_mongo(result) for result in results]
 

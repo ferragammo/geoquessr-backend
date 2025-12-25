@@ -1,10 +1,9 @@
-import asyncio
 from datetime import datetime
 from typing import List
 
 from pydantic import Field
 
-from app.api.users.dto import Modes
+from app.api.dto import Modes
 from app.core.database import MongoBaseModel
 
 

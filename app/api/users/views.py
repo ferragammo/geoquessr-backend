@@ -2,7 +2,7 @@ from typing import List
 
 from app.api.users import user_router
 from app.api.users.db_requests import get_top_10_users_obj, get_user_by_nickname_obj, upsert_result_obj
-from app.api.users.dto import Modes
+from app.api.dto import Modes
 from app.api.users.model import UserModel
 from app.api.users.schemas import UpsertUserResultRequest
 from app.core.wrappers import GeoguessrResponseWrapper

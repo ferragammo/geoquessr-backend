@@ -13,6 +13,9 @@ def create_app() -> FastAPI:
     from app.api.users import user_router
     app.include_router(user_router, tags=["user"])
 
+    from app.api.locations import location_router
+    app.include_router(location_router, tags=["location"])
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
