@@ -97,7 +97,7 @@ async def upsert_result_obj(nickname: str, mode: Modes, amount_of_points: float)
             amountOfPoints=amount_of_points
         )
 
-        asyncio.create_task(insert_result_obj(result))
+        await insert_result_obj(result)
         asyncio.create_task(update_user_obj(user.id, result.id))
         user.results.append(result.id)
 
