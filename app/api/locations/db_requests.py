@@ -1,3 +1,4 @@
+import asyncio
 from typing import List
 
 from app.api.dto import Modes
@@ -14,9 +15,16 @@ async def get_locations_obj(amount_of_rounds: int, mode: Modes) -> List[Location
     return [LocationModel.from_mongo(location) for location in locations]
 
 
-async def insert_location_obj(mode: Modes, latitude: float, longitude: float) -> None:
-    location = LocationModel(mode=mode, latitude=latitude, longitude=longitude)
+async def insert_location_obj(mode: Modes, latitude: float, longitude: float, name: str, country: str, city: str) -> LocationModel:
+    location = LocationModel(mode=mode,
+                             latitude=latitude,
+                             longitude=longitude,
+                             name=name,
+                             country=country,
+                             city=city)
 
     await settings.DB_CLIENT.locations.insert_one(location.to_mongo())
+
+    return location
 
 
