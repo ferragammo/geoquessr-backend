@@ -9,7 +9,7 @@ load_dotenv()
 
 class BaseConfig:
     BASE_DIR: pathlib.Path = pathlib.Path(__file__).parent.parent
-    DB_CLIENT = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_DB_URL")).Geoguessr
+    DB_CLIENT = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_DB_URL")).Geoquessr
 
 
 class DevelopmentConfig(BaseConfig):
