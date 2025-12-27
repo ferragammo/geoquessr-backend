@@ -16,7 +16,7 @@ async def all_users(
     return GeoguessrResponseWrapper(data=users)
 
 
-@user_router.get('/{nickname')
+@user_router.get('/{nickname}')
 async def get_user_by_nickname(
         nickname: str,
 ) -> GeoguessrResponseWrapper[UserModel]:
